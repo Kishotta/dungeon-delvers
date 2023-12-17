@@ -53,10 +53,6 @@ This project is currently in the initial stages of development. We are focusing 
 
 We welcome contributions! If you're interested in helping out, please check our [issues](https://github.com/Kishotta/dungeon-delvers/issues) section to see what we're currently working on. Feel free to fork this repository and submit pull requests.
 
-## License
-
-This project is licensed under [TBD].
-
 ## Contact
 
 For any questions or suggestions, please create an issue in this repository.
