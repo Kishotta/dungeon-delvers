@@ -5,26 +5,18 @@ import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {
-  AuthConfig,
-  OAuthModule,
-  provideOAuthClient,
-} from 'angular-oauth2-oidc';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { OAuthModule, provideOAuthClient } from 'angular-oauth2-oidc';
 import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RegisterComponent,
-    LoginComponent,
-    HomeComponent,
-  ],
+  declarations: [AppComponent, HomeComponent, DashboardComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    CoreModule,
     OAuthModule.forRoot(),
   ],
   providers: [provideHttpClient(), provideOAuthClient()],

@@ -1,0 +1,11 @@
+svg.battle-grid {
+  @apply absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-200 dark:stroke-gray-700 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)];
+}
+
+.character-card {
+  @apply relative pointer-events-none overflow-hidden rounded-xl aspect-[2/3] after:absolute after:inset-0 after:rounded-xl after:ring-2 after:ring-inset after:ring-gray-900/10;
+}
+
+.character-card > img {
+  @apply h-full w-full rounded-xl bg-gray-900/5 object-cover shadow-lg overflow-hidden scale-125;
+}

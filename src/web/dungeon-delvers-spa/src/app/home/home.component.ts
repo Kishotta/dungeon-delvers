@@ -4,26 +4,25 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-    constructor(private authService: AuthService) {
-    }
+  constructor(private authService: AuthService) {}
 
-    public login() {
-        this.authService.login();
-    }
+  public login() {
+    this.authService.login();
+  }
 
-    public logout() {
-        this.authService.logout
-    }
+  public logout() {
+    this.authService.logout();
+  }
 
-    public get userName() {
-        if (this.authService.isAuthenticated === false) return null;
+  public get userName() {
+    if (this.authService.isAuthenticated === false) return null;
 
-        var claims = this.authService.claims;
-        if (!claims) return null;
+    var claims = this.authService.claims;
+    if (!claims) return null;
 
-        return claims['email'];
-    }
+    return claims['email'];
+  }
 }
