@@ -114,3 +114,7 @@ Legal and Compliance
 
 1. **Copyright Compliance**: Develop and implement a strategy for managing copyrighted content, ensuring that users can only input data for personal use and are aware of the legal implications for sharing copyrighted materials.
 2. **Privacy Compliance**: Adhere to privacy laws relevant to the application's user base (e.g., GDPR, CCPA) including user content for data collection and providing users with the ability to view, edit, and delete their personal information.
+
+## Architecture
+
+![System Architecture](res/architecture_diagram.png)
