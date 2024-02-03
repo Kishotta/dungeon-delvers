@@ -83,3 +83,36 @@ System-Wide Features
 3. **Notifications and Updates**
    - Real-time notifications for campaign invetations, GM approvals, and other key interactions.
    - Update mechanism for the application to recieve new official content and updates.
+
+## Non-Functional Requirements
+
+Performance
+
+1. **Response Time**: The application should display pages and respond to user inputs within 2 seconds under normal load conditions.
+2. **Load Capacity**: Support concurrent usage by up to 1000 users without significant degradation in performance.
+
+Security
+
+1. **Data Protection**: Implement industry-standard encryption for data at rest and in transit. This includes using HTTPS for all communications and encrypting sensitive data stored in databases.
+2. **User Authentication**: Secure authentication mechanisms, including secure password storage (e.g., hashing with a salt) and the option for multi-factor authentication.
+3. **Access Control**: Enforce role-based access controls (RBAC) to ensure users can only access data and functionalities relevant to their role (GM or Player).
+
+Usability
+
+1. **Accessibility**: The application should comply with WCAG 2.1 AA standards to ensure it's accessbile to users with disabilities.
+2. **Mobile Responsiveness**: Ensure the application is fully functional and visually coherent on a variety of devices, including desktops, tablets, and smartphones.
+
+Scalability
+
+1. **Infrastructure Scalability**: Design the backend and database architecture to be easily scalable to accommodate growing numbers of users and data volume.
+2. **Maintainability**: Codebase and architecture shoudl be organized and documented to facilitate easy updates, bug fixes, and future additions.
+
+Reliability
+
+1. **Uptime**: Aim for 99.9% uptime, excluding scheduled maintenance windows.
+2. **Data Integrity and Backup**: Regularly back up data and implement robust error handling and recovery processes to prevent data loss.
+
+Legal and Compliance
+
+1. **Copyright Compliance**: Develop and implement a strategy for managing copyrighted content, ensuring that users can only input data for personal use and are aware of the legal implications for sharing copyrighted materials.
+2. **Privacy Compliance**: Adhere to privacy laws relevant to the application's user base (e.g., GDPR, CCPA) including user content for data collection and providing users with the ability to view, edit, and delete their personal information.
