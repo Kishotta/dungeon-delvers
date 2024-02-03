@@ -1,6 +1,4 @@
-# Dungeon Delvers: Character Management Module
-
-## Project Overview
+# Dungeon Delvers: Character Management Module 🧑‍🤝‍🧑
 
 ### Introduction
 
@@ -31,7 +29,7 @@ The initial focus of Dungeon Delvers is the Character Management Module, which o
 
 The oal of Dungeon Delvers is to provide a seamless and flexible platform that supports the dynamic and creative nature of D&D 5e. By reducing the administrative overhead associated with character and campaign management, Dungeon Delvers aims to enrich the gaming experience for both GMs and players, making it more engaging, accessible, and enjoyable.
 
-## Functional Requirements
+## Functional Requirements 📋
 
 General Requirements
 
@@ -84,7 +82,7 @@ System-Wide Features
    - Real-time notifications for campaign invetations, GM approvals, and other key interactions.
    - Update mechanism for the application to recieve new official content and updates.
 
-## Non-Functional Requirements
+## Non-Functional Requirements 🛠️
 
 Performance
 
