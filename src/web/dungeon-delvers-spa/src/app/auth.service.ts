@@ -7,8 +7,8 @@ import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 export class AuthService {
   constructor(private oauthService: OAuthService) {}
 
-  login() {
-    this.oauthService.initCodeFlow();
+  login(state?: string) {
+    this.oauthService.initLoginFlow(state);
   }
 
   logout() {

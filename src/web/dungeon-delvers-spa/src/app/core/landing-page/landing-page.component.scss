@@ -1,11 +1,87 @@
+header {
+  @apply absolute inset-x-0 top-0 z-50;
+}
+
+header > nav {
+  @apply mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8;
+}
+
+.logo-link {
+  @apply -m-1.5 p-1.5;
+}
+
+.logo-link > img {
+  @apply h-20 w-auto;
+}
+
+.top-nav {
+  @apply hidden lg:flex lg:gap-x-12;
+}
+
+.top-nav-link {
+  @apply text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100;
+}
+
 svg.battle-grid {
-  @apply absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-200 dark:stroke-gray-700 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)];
+  @apply absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-300 dark:stroke-gray-700 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)];
+}
+
+.shape-blur {
+  @apply absolute left-1/2 right-0 top-0 -z-10 -ml-24 transform-gpu overflow-hidden blur-3xl lg:ml-24 xl:ml-48;
+}
+
+.shape {
+  @apply aspect-[801/1036] w-[50.0625rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30;
+}
+
+.content-container {
+  @apply mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32;
+}
+
+.content-bounds {
+  @apply mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center;
+}
+
+.text-content {
+  @apply relative w-full max-w-xl lg:shrink-0 xl:max-w-2xl;
+}
+
+h1 {
+  @apply text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-6xl;
+}
+
+p {
+  @apply mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400 sm:max-w-md lg:max-w-none;
+}
+
+.actions {
+  @apply mt-10 flex items-center gap-x-6;
+}
+
+.character-card-grid {
+  @apply mt-14 flex justify-center gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0;
+}
+
+.first-column {
+  @apply ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80;
+}
+
+.second-column {
+  @apply mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36;
+}
+
+.third-column {
+  @apply w-44 flex-none space-y-8 pt-32 sm:pt-0;
 }
 
 .character-card {
-  @apply relative pointer-events-none overflow-hidden rounded-xl aspect-[2/3] after:absolute after:inset-0 after:rounded-xl after:ring-2 after:ring-inset after:ring-gray-900/10;
+  @apply relative pointer-events-none overflow-hidden rounded-xl aspect-[2/3] after:absolute after:inset-0 after:rounded-xl after:ring-1 after:ring-inset after:ring-gray-900/25 after:bg-radient-circle-c after:from-transparent after:to-gray-900/25;
 }
 
 .character-card > img {
   @apply h-full w-full rounded-xl bg-gray-900/5 object-cover shadow-lg overflow-hidden scale-125;
+}
+
+.character-stats {
+  @apply absolute top-[75%] rounded-b-xl left-0 right-0 bottom-0 bg-orange-800 ring-inset ring-2 ring-gray-900/25 grid grid-cols-2 gap-10;
 }
