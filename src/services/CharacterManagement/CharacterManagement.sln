@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterManagement.Api", "src\CharacterManagement.Api\CharacterManagement.Api.csproj", "{6C645338-E880-4B77-A48A-6E55DACF27BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterManagement.Presentation", "src\CharacterManagement.Presentation\CharacterManagement.Presentation.csproj", "{7C343543-E5F0-45EC-86E6-EF370025BB0A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C645338-E880-4B77-A48A-6E55DACF27BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C645338-E880-4B77-A48A-6E55DACF27BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C645338-E880-4B77-A48A-6E55DACF27BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C645338-E880-4B77-A48A-6E55DACF27BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C343543-E5F0-45EC-86E6-EF370025BB0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C343543-E5F0-45EC-86E6-EF370025BB0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C343543-E5F0-45EC-86E6-EF370025BB0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C343543-E5F0-45EC-86E6-EF370025BB0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

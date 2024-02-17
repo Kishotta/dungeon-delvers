@@ -1,0 +1,37 @@
+## dotnet
+
+src/services/**/*.swp
+src/services/**/*.*~
+src/services/**/project.lock.json
+src/services/**/.DS_Store
+src/services/**/*.pyc
+src/services/**/nupkg/
+
+# VS Code
+.vscode/*
+
+# Rider
+src/services/**/.idea/*
+
+# User-specific files
+src/services/**/*.suo
+src/services/**/*.user
+src/services/**/*.userosscache
+src/services/**/*.sln.docstates
+
+# Build results
+src/services/**/[Dd]ebug/
+src/services/**/[Dd]ebugPublic/
+src/services/**/[Rr]elease/
+src/services/**/[Rr]eleases/
+src/services/**/x64/
+src/services/**/x86/
+src/services/**/build/
+src/services/**/bld/
+src/services/**/[Bb]in/
+src/services/**/[Oo]bj/
+src/services/**/[Oo]ut/
+src/services/**/[Ll]og/
+src/services/**/msbuild.log
+src/services/**/msbuild.err
+src/services/**/msbuild.wrn
