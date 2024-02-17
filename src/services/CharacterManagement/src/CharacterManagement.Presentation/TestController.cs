@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using CharacterManagement.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,5 +28,12 @@ public class TestController : ControllerBase
         if (response.IsSuccessStatusCode)
             return Ok (response.Content.ReadAsStringAsync ().Result);
         return BadRequest ();
+    }
+
+    [HttpGet("ProblemDetailsReason")]
+    public IActionResult ProblemDetailsReason ()
+    {
+        var result = Result.Failure ("There was a problem handling your request");
+        return BadRequest ("Test");
     }
 }
