@@ -1,18 +1,18 @@
 ﻿using CharacterManagement.Application.Contracts;
-using CharacterManagement.Application.GetCharactersForUser;
 using CharacterManagement.Domain;
+using CharacterManagement.Domain.Characters;
 
 namespace CharacterManagement.Application.GetCharacterForUser;
 
 public class GetCharacterForUserQueryHandler(ICharacterRepository characterRepository)
-    : IQueryHandler<GetCharacterForUserQuery, GetCharacterForUserResponse>
+    : IQueryHandler<GetCharacterForUserQuery, Character>
 {
-    public async Task<Result<GetCharacterForUserResponse>> Handle (GetCharacterForUserQuery request, CancellationToken cancellationToken)
+    public async Task<Result<Character>> Handle (GetCharacterForUserQuery request, CancellationToken cancellationToken)
     {
         var character = characterRepository.GetCharacterForUser(request.Id, request.UserId);
         var result = character is null ?
-            Result.Failure<GetCharacterForUserResponse>("Character not found") :
-            Result.Success(new GetCharacterForUserResponse(character.Id, character.Name));
+            Result.Failure<Character>("Character not found") :
+            Result.Success(character);
 
         return await Task.FromResult (result);
     }

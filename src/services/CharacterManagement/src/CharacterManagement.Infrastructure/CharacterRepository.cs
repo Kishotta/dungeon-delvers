@@ -1,4 +1,4 @@
-﻿using CharacterManagement.Domain;
+﻿using CharacterManagement.Domain.Characters;
 
 namespace CharacterManagement.Infrastructure;
 
@@ -23,11 +23,4 @@ public class CharacterRepository(CharacterManagementContext context) : ICharacte
     {
          context.Characters.Remove (character);
     }
-
-    public async Task SaveChanges (CancellationToken cancellationToken)
-    {
-        await context.SaveChangesAsync (cancellationToken);
-    }
-
-
 }

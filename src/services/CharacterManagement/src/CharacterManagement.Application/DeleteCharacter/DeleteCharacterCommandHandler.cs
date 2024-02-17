@@ -1,9 +1,10 @@
 ﻿using CharacterManagement.Application.Contracts;
 using CharacterManagement.Domain;
+using CharacterManagement.Domain.Characters;
 
 namespace CharacterManagement.Application.DeleteCharacter;
 
-public class DeleteCharacterCommandHandler(ICharacterRepository characterRepository)
+public class DeleteCharacterCommandHandler(ICharacterRepository characterRepository, IUnitOfWork unitOfWork)
     : ICommandHandler<DeleteCharacterCommand>
 {
     public async Task<Result> Handle(DeleteCharacterCommand request, CancellationToken cancellationToken)
@@ -20,7 +21,7 @@ public class DeleteCharacterCommandHandler(ICharacterRepository characterReposit
         }
 
         characterRepository.DeleteCharacter(character);
-        await characterRepository.SaveChanges (cancellationToken);
+        await unitOfWork.SaveChangesAsync (cancellationToken);
 
         return Result.Success();
     }
