@@ -15,4 +15,8 @@
       <ProjectReference Include="..\CharacterManagement.Domain\CharacterManagement.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Characters\" />
+    </ItemGroup>
+
 </Project>

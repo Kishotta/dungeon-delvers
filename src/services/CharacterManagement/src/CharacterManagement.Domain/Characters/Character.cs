@@ -4,7 +4,7 @@ public class Character
 {
     public Guid Id     { get; set; }
     public Guid UserId { get; set; }
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; private set; } = string.Empty;
 
     private Character () { }
 
@@ -12,6 +12,11 @@ public class Character
     {
         Id = Guid.NewGuid ();
         UserId = userId;
+        Name = name;
+    }
+
+    public void ChangeName (string name)
+    {
         Name = name;
     }
 }

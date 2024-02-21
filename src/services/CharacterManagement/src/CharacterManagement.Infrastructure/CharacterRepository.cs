@@ -1,20 +1,21 @@
 ﻿using CharacterManagement.Domain.Characters;
+using Microsoft.EntityFrameworkCore;
 
 namespace CharacterManagement.Infrastructure;
 
 public class CharacterRepository(CharacterManagementContext context) : ICharacterRepository
 {
-    public IEnumerable<Character> GetCharactersForUser (Guid userId)
+    public async Task<IEnumerable<Character>> GetCharactersForUserAsync (Guid userId)
     {
-        return context.Characters.Where (c => c.UserId == userId);
+        return await context.Characters.Where (c => c.UserId == userId).ToListAsync();
     }
 
-    public Character? GetCharacterForUser (Guid id, Guid userId)
+    public async Task<Character?> GetCharacterForUserAsync (Guid id, Guid userId)
     {
-        return context.Characters.FirstOrDefault (c => c.Id == id && c.UserId == userId);
+        return await context.Characters.FirstOrDefaultAsync (c => c.Id == id && c.UserId == userId);
     }
 
-    public async Task AddCharacter (Character character, CancellationToken cancellationToken)
+    public async Task AddCharacterAsync (Character character, CancellationToken cancellationToken)
     {
         await context.Characters.AddAsync (character, cancellationToken);
     }
