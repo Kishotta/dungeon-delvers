@@ -12,7 +12,8 @@ builder.Services
        .AddApplication()
        .AddPresentation ();
 
-builder.Services.AddHealthChecks ();
+builder.Services
+       .AddHealthChecks ();
 
 var app = builder.Build ();
 
@@ -20,6 +21,8 @@ app.UsePresentation ()
    .UseAuth()
    .UseHttpsRedirection ()
    .UseHealthChecks("/healthz");
+
+app.UseStaticFiles ();
 
 // HACK: Apply migrations on startup
 // At some point, this should be handled by a kubernetes init container or something.

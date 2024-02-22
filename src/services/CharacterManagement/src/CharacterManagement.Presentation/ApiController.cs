@@ -1,9 +1,12 @@
-﻿using System.Security.Claims;
+﻿using System.Net.Mime;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CharacterManagement.Presentation;
 
 [ApiController]
+[Consumes(MediaTypeNames.Application.Json)]
+[Produces(MediaTypeNames.Application.Json)]
 public class ApiController : ControllerBase
 {
     protected Guid UserId

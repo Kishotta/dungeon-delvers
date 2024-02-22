@@ -1,3 +1,9 @@
-﻿namespace CharacterManagement.Presentation.Characters;
+﻿using System.ComponentModel.DataAnnotations;
 
-public record CreateCharacterRequest(string Name);
+namespace CharacterManagement.Presentation.Characters;
+
+/// <summary>
+/// Create Character Request
+/// </summary>
+/// <param name="Name">Character Name</param>
+public record CreateCharacterRequest([property: Required]string Name);
