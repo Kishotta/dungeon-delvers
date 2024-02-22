@@ -8,13 +8,10 @@ public class DeleteCharacterCommandHandler(ICharacterRepository characterReposit
 {
     public async Task<Result> Handle(DeleteCharacterCommand request, CancellationToken cancellationToken)
     {
-        var character = await characterRepository.GetCharacterForUserAsync(request.Id, request.UserId);
+        var character = await characterRepository.GetByIdAsync(request.Id);
 
-        if (character is null)
+        if (character is null || !character.OwnedBy (request.UserId))
             return Result.Failure("Character not found");
-
-        if (character.UserId != request.UserId)
-            return Result.Failure ("You do not have permission to delete this character");
 
         characterRepository.DeleteCharacter(character);
         await unitOfWork.SaveChangesAsync (cancellationToken);

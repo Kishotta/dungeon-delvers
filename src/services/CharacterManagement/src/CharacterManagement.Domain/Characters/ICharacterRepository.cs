@@ -2,8 +2,8 @@
 
 public interface ICharacterRepository
 {
-    Task<IEnumerable<Character>> GetCharactersForUserAsync (Guid userId);
-    Task<Character?> GetCharacterForUserAsync (Guid id, Guid userId);
+    Task<IEnumerable<Character>> GetByUserIdAsync (Guid userId);
+    Task<Character?> GetByIdAsync (Guid id);
     Task AddCharacterAsync (Character character, CancellationToken cancellationToken);
     void DeleteCharacter (Character character);
 }

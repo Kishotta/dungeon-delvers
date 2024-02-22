@@ -8,8 +8,8 @@ public class GetCharacterForUserQueryHandler(ICharacterRepository characterRepos
 {
     public async Task<Result<Character>> Handle (GetCharacterForUserQuery request, CancellationToken cancellationToken)
     {
-        var character = await characterRepository.GetCharacterForUserAsync(request.Id, request.UserId);
-        var result = character is null ?
+        var character = await characterRepository.GetByIdAsync(request.Id);
+        var result = character is null || !character.OwnedBy (request.UserId) ?
             Result.Failure<Character>("Character not found") :
             Result.Success(character);
 

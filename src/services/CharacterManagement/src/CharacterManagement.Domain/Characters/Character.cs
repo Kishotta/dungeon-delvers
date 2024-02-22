@@ -3,17 +3,19 @@
 public class Character
 {
     public Guid Id     { get; set; }
-    public Guid UserId { get; set; }
+    public Guid OwnerId { get; set; }
     public string Name { get; private set; } = string.Empty;
 
     private Character () { }
 
-    public Character (Guid userId, string name)
+    public Character (Guid ownerId, string name)
     {
         Id = Guid.NewGuid ();
-        UserId = userId;
+        OwnerId = ownerId;
         Name = name;
     }
+
+    public bool OwnedBy (Guid userId) => OwnerId == userId;
 
     public void ChangeName (string name)
     {

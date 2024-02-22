@@ -5,14 +5,14 @@ namespace CharacterManagement.Infrastructure;
 
 public class CharacterRepository(CharacterManagementContext context) : ICharacterRepository
 {
-    public async Task<IEnumerable<Character>> GetCharactersForUserAsync (Guid userId)
+    public async Task<IEnumerable<Character>> GetByUserIdAsync (Guid userId)
     {
-        return await context.Characters.Where (c => c.UserId == userId).ToListAsync();
+        return await context.Characters.Where (c => c.OwnerId == userId).ToListAsync();
     }
 
-    public async Task<Character?> GetCharacterForUserAsync (Guid id, Guid userId)
+    public async Task<Character?> GetByIdAsync (Guid id)
     {
-        return await context.Characters.FirstOrDefaultAsync (c => c.Id == id && c.UserId == userId);
+        return await context.Characters.FirstOrDefaultAsync (c => c.Id == id);
     }
 
     public async Task AddCharacterAsync (Character character, CancellationToken cancellationToken)
