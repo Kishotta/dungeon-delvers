@@ -40,6 +40,24 @@ namespace CharacterManagement.Infrastructure.Migrations
                     b.ToTable("Characters");
                 });
 
+            modelBuilder.Entity("CharacterManagement.Domain.Races.Race", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Races");
+                });
+
             modelBuilder.Entity("CharacterManagement.Domain.Sources.Source", b =>
                 {
                     b.Property<Guid>("Id")
@@ -56,6 +74,36 @@ namespace CharacterManagement.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sources");
+                });
+
+            modelBuilder.Entity("RaceSource", b =>
+                {
+                    b.Property<Guid>("RacesId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("SourcesId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("RacesId", "SourcesId");
+
+                    b.HasIndex("SourcesId");
+
+                    b.ToTable("RaceSource");
+                });
+
+            modelBuilder.Entity("RaceSource", b =>
+                {
+                    b.HasOne("CharacterManagement.Domain.Races.Race", null)
+                        .WithMany()
+                        .HasForeignKey("RacesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CharacterManagement.Domain.Sources.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourcesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

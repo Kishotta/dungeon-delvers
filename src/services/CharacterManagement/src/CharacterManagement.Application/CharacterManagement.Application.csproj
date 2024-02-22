@@ -17,7 +17,9 @@
 
     <ItemGroup>
       <Folder Include="Characters\" />
-      <Folder Include="Sources\" />
+      <Folder Include="Sources\ChangeSourceName\" />
+      <Folder Include="Sources\DeleteSource\" />
+      <Folder Include="Sources\GetSources\" />
     </ItemGroup>
 
 </Project>

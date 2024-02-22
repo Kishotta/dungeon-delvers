@@ -8,7 +8,7 @@ public class GetCharactersForUserQueryHandler (ICharacterRepository characterRep
 {
     public async Task<Result<IEnumerable<Character>>> Handle (GetCharactersForUserQuery request, CancellationToken cancellationToken)
     {
-        var characters = await characterRepository.GetByUserIdAsync (request.UserId);
+        var characters = await characterRepository.GetByOwnerIdAsync (request.UserId);
 
         var result = Result.Success (characters);
 

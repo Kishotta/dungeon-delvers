@@ -5,7 +5,7 @@ namespace CharacterManagement.Infrastructure;
 
 public class CharacterRepository(CharacterManagementContext context) : ICharacterRepository
 {
-    public async Task<IEnumerable<Character>> GetByUserIdAsync (Guid userId)
+    public async Task<IEnumerable<Character>> GetByOwnerIdAsync (Guid userId)
     {
         return await context.Characters.Where (c => c.OwnerId == userId).ToListAsync();
     }

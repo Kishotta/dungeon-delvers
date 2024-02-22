@@ -2,8 +2,8 @@
 
 public interface ISourceRepository
 {
-    Task<IEnumerable<Source>> GetByUserIdAsync (Guid userId);
-    Task<Source?> GetByIdAsync (Guid id);
+    Task<IEnumerable<Source>> GetByOwnerIdAsync (Guid userId, CancellationToken cancellationToken);
+    Task<Source?> GetByIdAsync (Guid id, CancellationToken cancellationToken);
     Task AddSourceAsync (Source source, CancellationToken cancellationToken);
     void DeleteSource (Source source);
 }

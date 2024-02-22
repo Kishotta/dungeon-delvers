@@ -3,8 +3,6 @@ using CharacterManagement.Application.Characters.CreateCharacter;
 using CharacterManagement.Application.Characters.DeleteCharacter;
 using CharacterManagement.Application.Characters.GetCharacterForUser;
 using CharacterManagement.Application.Characters.GetCharactersForUser;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CharacterManagement.Presentation.Characters;
 

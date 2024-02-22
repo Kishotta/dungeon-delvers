@@ -1,5 +1,6 @@
 ﻿using CharacterManagement.Domain;
 using CharacterManagement.Domain.Characters;
+using CharacterManagement.Domain.Races;
 using CharacterManagement.Domain.Sources;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ public static class DependencyInjection
 
         services.AddScoped<IUnitOfWork> (serviceProvider => serviceProvider.GetRequiredService<CharacterManagementContext> ());
         services.AddScoped<ISourceRepository, SourceRepository> ();
+        services.AddScoped<IRaceRepository, RaceRepository> ();
         services.AddScoped<ICharacterRepository, CharacterRepository> ();
 
         services.AddNpgsqlDataSource (characterManagementDatabaseConnectionString);

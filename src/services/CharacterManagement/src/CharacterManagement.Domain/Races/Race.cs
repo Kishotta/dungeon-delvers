@@ -1,18 +1,18 @@
-﻿using CharacterManagement.Domain.Races;
+﻿using CharacterManagement.Domain.Sources;
 
-namespace CharacterManagement.Domain.Sources;
+namespace CharacterManagement.Domain.Races;
 
-public class Source
+public class Race
 {
     public Guid   Id      { get; set; }
     public Guid   OwnerId { get; set; }
-    public string Name    { get; set; } = string.Empty;
+    public string Name    { get; private set; } = string.Empty;
 
-    public List<Race> Races { get; private set; } = new();
+    public List<Source> Sources { get; private set; } = new();
 
-    private Source () { }
+    private Race () { }
 
-    public Source (Guid ownerId, string name)
+    public Race (Guid ownerId, string name)
     {
         Id      = Guid.NewGuid ();
         OwnerId = ownerId;
