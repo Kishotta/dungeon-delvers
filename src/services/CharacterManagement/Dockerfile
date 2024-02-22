@@ -5,10 +5,6 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["src/CharacterManagement.Domain/CharacterManagement.Domain.csproj", "src/CharacterManagement.Domain/"]
-COPY ["src/CharacterManagement.Infrastructure/CharacterManagement.Infrastructure.csproj", "src/CharacterManagement.Infrastructure/"]
-COPY ["src/CharacterManagement.Infrastructure/CharacterManagement.Infrastructure.csproj", "src/CharacterManagement.Infrastructure/"]
-COPY ["src/CharacterManagement.Presentation/CharacterManagement.Presentation.csproj", "src/CharacterManagement.Presentation/"]
 COPY ["src/CharacterManagement.Api/CharacterManagement.Api.csproj", "src/CharacterManagement.Api/"]
 RUN dotnet restore "src/CharacterManagement.Api/CharacterManagement.Api.csproj"
 COPY . .

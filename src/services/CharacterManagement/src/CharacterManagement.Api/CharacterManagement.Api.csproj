@@ -10,18 +10,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.2" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\CharacterManagement.Application\CharacterManagement.Application.csproj" />
-      <ProjectReference Include="..\CharacterManagement.Infrastructure\CharacterManagement.Infrastructure.csproj" />
-      <ProjectReference Include="..\CharacterManagement.Presentation\CharacterManagement.Presentation.csproj" />
+        <PackageReference Include="Npgsql.DependencyInjection" Version="8.0.2" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     </ItemGroup>
 
 </Project>

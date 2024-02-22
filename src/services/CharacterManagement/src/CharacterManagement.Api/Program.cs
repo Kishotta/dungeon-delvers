@@ -1,7 +1,4 @@
 using CharacterManagement.Api;
-using CharacterManagement.Application;
-using CharacterManagement.Infrastructure;
-using CharacterManagement.Presentation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder (args);
@@ -9,7 +6,6 @@ var builder = WebApplication.CreateBuilder (args);
 builder.Services
        .AddAuth (builder.Configuration)
        .AddInfrastructure(builder.Configuration)
-       .AddApplication()
        .AddPresentation ();
 
 builder.Services
