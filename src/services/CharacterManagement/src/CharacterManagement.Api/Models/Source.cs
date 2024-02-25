@@ -6,7 +6,7 @@ public class Source
     public Guid   OwnerId { get; set; }
     public string Name    { get; set; } = string.Empty;
 
-    public List<Race> Races { get; private set; } = new();
+    public List<Guid> RaceIds { get; private set; } = new();
 
     private Source () { }
 

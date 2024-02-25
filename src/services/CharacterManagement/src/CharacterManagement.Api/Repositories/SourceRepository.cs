@@ -1,4 +1,5 @@
 ﻿using CharacterManagement.Api.Models;
+using CharacterManagement.Api.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace CharacterManagement.Api.Repositories;

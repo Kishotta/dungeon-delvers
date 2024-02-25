@@ -1,4 +1,5 @@
 using CharacterManagement.Api;
+using CharacterManagement.Api.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder (args);

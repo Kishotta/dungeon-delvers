@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using CharacterManagement.Api.Options;
+using CharacterManagement.Api.Persistence;
 using CharacterManagement.Api.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -67,6 +68,8 @@ public static class DependencyInjection
         services.AddSwaggerGen (options =>
         {
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "Character Management API", Version = "v1" });
+
+            options.CustomSchemaIds(type => type.ToString());
 
             // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             // var xmlPath = Path.Combine (AppContext.BaseDirectory, xmlFile);
