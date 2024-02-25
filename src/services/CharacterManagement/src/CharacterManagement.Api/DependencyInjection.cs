@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using CharacterManagement.Api.Options;
+﻿using CharacterManagement.Api.Options;
 using CharacterManagement.Api.Persistence;
 using CharacterManagement.Api.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -148,6 +147,8 @@ public static class DependencyInjection
         services.AddNpgsqlDataSource (characterManagementDatabaseConnectionString);
         services.AddHealthChecks ()
                 .AddNpgSql ();
+
+        services.AddMemoryCache ();
 
         return services;
     }

@@ -1,43 +1,57 @@
-﻿using CharacterManagement.Api.Models;
-using CharacterManagement.Api.Models.Characters;
+﻿using CharacterManagement.Api.Models.Characters;
 using CharacterManagement.Api.Persistence;
-using CharacterManagement.Api.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace CharacterManagement.Api.Controllers;
 
 [Authorize]
 [Route ("[controller]")]
 public class CharactersController(
-        CharacterManagementContext dbContext)
+        CharacterManagementContext dbContext,
+        IMemoryCache memoryCache)
     : ApiController
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Character>>> GetCharacters (CancellationToken cancellationToken)
+    public async Task<ActionResult<IEnumerable<MaterializedCharacter>>> GetCharacters (CancellationToken cancellationToken)
     {
-        var characters = await dbContext.Characters
-                                        .AsNoTracking ()
-                                        .Include (c => c.Effects)
-                                        .Where (c => c.OwnerId == UserId)
-                                        .ToListAsync (cancellationToken);
+        var cacheKey = $"Characters_{UserId}";
+        if (!memoryCache.TryGetValue (cacheKey, out IEnumerable<MaterializedCharacter>? materializedCharacters))
+        {
+            var characters = await dbContext.Characters
+                                            .AsNoTracking ()
+                                            .Include (c => c.Effects)
+                                            .Where (c => c.OwnerId == UserId)
+                                            .ToListAsync (cancellationToken);
+            materializedCharacters = characters.Select (c => c.Materialize ());
+            memoryCache.Set (cacheKey, materializedCharacters, TimeSpan.FromMinutes (5));
+        }
 
-        return Ok (characters.Select (c => c.Materialize()));
+        return Ok (materializedCharacters);
     }
 
     [ActionName (nameof (GetCharacter))]
     [HttpGet ("{id:guid}")]
-    public async Task<ActionResult<Character>> GetCharacter (Guid id, CancellationToken cancellationToken)
+    public async Task<ActionResult<MaterializedCharacter>> GetCharacter (Guid id, CancellationToken cancellationToken)
     {
-        var character = await dbContext.Characters
-                                       .AsNoTracking ()
-                                       .Include (c => c.Effects)
-                                       .Where (c => c.OwnerId == UserId)
-                                       .SingleOrDefaultAsync (c => c.Id == id, cancellationToken);
-        if (character is null)
-            return NotFound ();
-        return Ok (character.Materialize());
+        var cacheKey = $"Character_{id}";
+        if (!memoryCache.TryGetValue (cacheKey, out MaterializedCharacter? materializedCharacter))
+        {
+            var character = await dbContext.Characters
+                                           .AsNoTracking ()
+                                           .Include (c => c.Effects)
+                                           .Where (c => c.OwnerId           == UserId)
+                                           .SingleOrDefaultAsync (c => c.Id == id, cancellationToken);
+            if (character is null)
+                return NotFound ();
+
+            materializedCharacter = character.Materialize ();
+            memoryCache.Set (cacheKey, materializedCharacter, TimeSpan.FromMinutes (5));
+        }
+
+        return Ok (materializedCharacter);
     }
 
     public record CreateCharacterRequest(string Name, Guid RaceId);
