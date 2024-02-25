@@ -53,6 +53,17 @@ public static class DependencyInjection
 
     public static IServiceCollection AddPresentation (this IServiceCollection services)
     {
+        services.AddCors (options =>
+        {
+            options.AddPolicy("AllowedOrigins",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+        });
+
         services.AddSwagger ()
                 .AddControllers ();
 
@@ -112,6 +123,8 @@ public static class DependencyInjection
     {
         app.UseSwagger ();
         app.UseSwaggerUI ();
+
+        app.UseCors ("AllowedOrigins");
 
         (app as WebApplication)!.MapControllers ();
 
