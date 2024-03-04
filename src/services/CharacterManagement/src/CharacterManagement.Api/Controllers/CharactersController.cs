@@ -77,11 +77,11 @@ public class CharactersController(
         return CreatedAtAction (nameof (GetCharacter), new { id = character.Id }, materializedCharacter);
     }
 
-    public record ChangeNameRequest(string Name);
+    public record ChangeCharacterNameRequest(string Name);
 
     [HttpPost ("{id:guid}/name")]
     public async Task<ActionResult<Character>> ChangeCharacterName (Guid id,
-                                                                    ChangeNameRequest request,
+                                                                    ChangeCharacterNameRequest request,
                                                                     CancellationToken cancellationToken)
     {
         var character = await dbContext.Characters

@@ -44,10 +44,10 @@ public class RacesController(CharacterManagementContext dbContext,
         return CreatedAtAction (nameof (GetRace), new { id = race.Id }, race);
     }
 
-    public record ChangeNameRequest(string Name);
+    public record ChangeRaceNameRequest(string Name);
 
     [HttpPost ("{id:guid}/name")]
-    public async Task<ActionResult<Race>> ChangeRaceName (Guid id, ChangeNameRequest request, CancellationToken cancellationToken)
+    public async Task<ActionResult<Race>> ChangeRaceName (Guid id, ChangeRaceNameRequest request, CancellationToken cancellationToken)
     {
         var race = await raceRepository.GetByIdAsync (id, cancellationToken);
         if (race is null || !race.OwnedBy (UserId))

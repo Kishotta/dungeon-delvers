@@ -79,7 +79,7 @@ public static class DependencyInjection
         {
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "Character Management API", Version = "v1" });
 
-            options.CustomSchemaIds(type => type.ToString());
+            // options.CustomSchemaIds(type => type.FullName);
 
             // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             // var xmlPath = Path.Combine (AppContext.BaseDirectory, xmlFile);

@@ -39,11 +39,11 @@ public class SourcesController(SourceRepository sourceRepository,
         return CreatedAtAction (nameof (GetSource), new { id = source.Id }, source);
     }
 
-    public record ChangeNameRequest(string Name);
+    public record ChangeSourceNameRequest(string Name);
 
     [HttpPost ("{id:guid}/name")]
     public async Task<ActionResult<Source>> ChangeSourceName (Guid id,
-                                                            ChangeNameRequest request,
+                                                            ChangeSourceNameRequest request,
                                                             CancellationToken cancellationToken)
     {
         var source = await sourceRepository.GetByIdAsync (id, cancellationToken);
