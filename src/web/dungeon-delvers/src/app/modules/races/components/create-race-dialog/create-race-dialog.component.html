@@ -1,0 +1,13 @@
+<h1 mag-dialog-title>Create New Race</h1>
+<mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Race Name</mat-label>
+    <input matInput [(ngModel)]="data.name" name="raceName" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="data" color="primary">
+    Create
+  </button>
+</mat-dialog-actions>

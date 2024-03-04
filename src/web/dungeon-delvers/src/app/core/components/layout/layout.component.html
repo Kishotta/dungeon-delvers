@@ -1,0 +1,55 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="">Dashboard</a>
+      <a mat-list-item routerLink="races">Races</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <div class="content">
+        @if (isHandset$ | async) {
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        }
+        <span>Dungeon Delvers</span>
+        <span class="spacer"></span>
+        <button
+          *ngIf="!authService.isLoggedIn"
+          mat-button
+          (click)="authService.login()"
+        >
+          Log in
+        </button>
+        <button
+          *ngIf="authService.isLoggedIn"
+          mat-button
+          [matMenuTriggerFor]="menu"
+        >
+          {{ authService.email }}
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item disabled="true">Profile</button>
+          <button mat-menu-item (click)="authService.logout()">Log out</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
