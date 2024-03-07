@@ -34,4 +34,19 @@ export class RaceService {
       { headers: this.authService.getAuthHeaders() }
     );
   }
+
+  public addTrait(race: Race | undefined, name: string, description: string) {
+    if (!race) return;
+
+    return this.httpClient.post(
+      `${this.baseUrl}/${race.id}/traits`,
+      {
+        name,
+        description,
+      },
+      {
+        headers: this.authService.getAuthHeaders(),
+      }
+    );
+  }
 }
