@@ -11,4 +11,7 @@
         <ProjectReference Include="..\DungeonDelvers.ServiceDefaults\DungeonDelvers.ServiceDefaults.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MudBlazor" Version="6.18.0" />
+    </ItemGroup>
 </Project>

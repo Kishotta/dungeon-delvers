@@ -6,44 +6,26 @@
 
 <PageTitle>Weather</PageTitle>
 
-<h1>Weather</h1>
+<MudText Typo="Typo.h1">Weather</MudText>
 
-<p>This component demonstrates showing data loaded from a backend API service.</p>
+<MudText Typo="Typo.body1">This component demonstrates showing data loaded from a backend API service.</MudText>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<MudDataGrid Items="@_forecasts" Loading="@_loading">
+    <Columns>
+        <PropertyColumn Property="forecast => forecast.Date" Title="Date" />
+        <PropertyColumn Property="forecast => forecast.TemperatureC" Title="Temp. (C)" />
+        <PropertyColumn Property="forecast => forecast.TemperatureF" Title="Temp. (F)" />
+        <PropertyColumn Property="forecast => forecast.Summary" Title="Summary" />
+    </Columns>
+</MudDataGrid>
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private bool _loading = true;
+    private WeatherForecast[]? _forecasts = [];
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await WeatherApi.GetWeatherAsync();
+        _forecasts = await WeatherApi.GetWeatherAsync();
+        _loading = false;
     }
 }
