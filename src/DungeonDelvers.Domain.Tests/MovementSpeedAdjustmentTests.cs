@@ -6,10 +6,11 @@ namespace DungeonDelvers.Domain.Tests;
 public class MovementSpeedAdjustmentTests
 {
     private Character _character = default!;
+    
     [SetUp]
     public void SetUp()
     {
-        var race = Race.Create(null, "Test Race", "Description");
+        var race = Race.Create("Test Race", "Description");
         _character = Character.Create(
             "Test character",
             race,

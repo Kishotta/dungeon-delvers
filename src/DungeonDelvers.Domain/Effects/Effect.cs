@@ -4,7 +4,7 @@ public abstract class Effect
 {
     public IEffectSource? Source { get; set; }
     
-    public abstract void Apply(MaterializedCharacter materializedCharacter);
+    public abstract MaterializedCharacter Apply(MaterializedCharacter materializedCharacter);
 
     public Effect CloneWithEffectSource(IEffectSource source)
     {

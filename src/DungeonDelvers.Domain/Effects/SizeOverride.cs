@@ -1,16 +1,12 @@
 namespace DungeonDelvers.Domain.Effects;
 
-public class SizeOverride : Effect
+public class SizeOverride(Size size) : Effect
 {
-    public Size Size { get; private set; }
-    
-    public SizeOverride(Size size)
-    {
-        Size = size;
-    }
+    public Size Size { get; private set; } = size;
 
-    public override void Apply(MaterializedCharacter materializedCharacter)
+    public override MaterializedCharacter Apply(MaterializedCharacter materializedCharacter)
     {
         materializedCharacter.Size = Size;
+        return materializedCharacter;
     }
 }

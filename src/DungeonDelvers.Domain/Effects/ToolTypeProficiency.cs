@@ -1,12 +1,12 @@
 namespace DungeonDelvers.Domain.Effects;
 
-public class Darkvision(uint distance) : Effect
+public class ToolTypeProficiency(ToolType toolType) : Effect
 {
-    public uint Distance { get; private set; } = distance;
+    public ToolType ToolType { get; private set; } = toolType;
     
     public override MaterializedCharacter Apply(MaterializedCharacter materializedCharacter)
     {
-        materializedCharacter.Darkvision.Set(Distance);
+        materializedCharacter.ToolProficiencies |= ToolType;
         return materializedCharacter;
     }
 }

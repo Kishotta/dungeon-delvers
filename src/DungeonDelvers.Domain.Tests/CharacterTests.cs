@@ -8,7 +8,6 @@ public class CharacterTests
     private static Race CreateDwarfRace()
     {
         return Race.Create(
-            null,
             "Dwarf", 
             "Description", 
             CreatureType.Humanoid,
@@ -121,7 +120,7 @@ public class CharacterTests
     {
         var trait = Trait.Create("Test Trait", "Test Description");
         trait.AddEffect(new MovementSpeedAdjustment(-10));
-        var race = Race.Create(null, "Test Race", "Test Description");
+        var race = Race.Create("Test Race", "Test Description");
         race.AddTrait(trait);
         var character = CreateCharacterWithRace(race);
         
@@ -159,7 +158,7 @@ public class CharacterTests
         var trait = Trait.Create("Test Trait", "Test Description");
         trait.AddEffect(new MovementSpeedAdjustment(5));
         trait.AddEffect(new MovementSpeedAdjustment(5));
-        var race = Race.Create(null,"Test Race", "Test Description");
+        var race = Race.Create("Test Race", "Test Description");
         race.AddTrait(trait);
         var character = CreateCharacterWithRace(race);
         
@@ -183,7 +182,7 @@ public class CharacterTests
         var secondTrait = Trait.Create("Second Test Trait", "Test Description");
         secondTrait.AddEffect(new MovementSpeedAdjustment(5));
 
-        var race = Race.Create(null,"Test Race", "Test Description");
+        var race = Race.Create("Test Race", "Test Description");
         race.AddTrait(firstTrait);
         race.AddTrait(secondTrait);
         
@@ -203,7 +202,7 @@ public class CharacterTests
     [Test]
     public void Materialize_MultipleEffect_SameType_ReturnsMaterializedCharacterWithEffectsApplied()
     {
-        var race = Race.Create(null,"Test Race", "Test Description");
+        var race = Race.Create("Test Race", "Test Description");
         var character = CreateCharacterWithRace(race);
         
         character.AddEffect(new MovementSpeedAdjustment(5));
@@ -229,7 +228,7 @@ public class CharacterTests
         var secondTrait = Trait.Create("Second Test Trait", "Test Description");
         secondTrait.AddEffect(new SizeOverride(Size.Gargantuan));
         
-        var race = Race.Create(null,"Test Race", "Test Description");
+        var race = Race.Create("Test Race", "Test Description");
         race.AddTrait(firstTrait);
         race.AddTrait(secondTrait);
         

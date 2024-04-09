@@ -1,11 +1,11 @@
 namespace DungeonDelvers.Domain;
 
-public class Sense(uint distance)
+public class Sense(uint range)
 {
-    public uint Distance { get; private set; } = distance;
+    public uint Range { get; private set; } = range;
 
-    public void Set(uint distance)
+    public void Set(uint range)
     {
-        Distance = Math.Max(Distance, distance);
+        Range = Math.Max(Range, range);
     }
 }

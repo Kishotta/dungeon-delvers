@@ -2,7 +2,7 @@ namespace DungeonDelvers.Domain.Effects;
 
 public class AbilityScoreAdjustment(Ability ability, int adjustment) : Effect
 {
-    public override void Apply(MaterializedCharacter materializedCharacter)
+    public override MaterializedCharacter Apply(MaterializedCharacter materializedCharacter)
     {
         switch (ability)
         {
@@ -27,5 +27,7 @@ public class AbilityScoreAdjustment(Ability ability, int adjustment) : Effect
             default:
                 throw new ArgumentOutOfRangeException(nameof(ability), ability, null);
         }
+
+        return materializedCharacter;
     }
 }

@@ -1,3 +1,4 @@
+using DungeonDelvers.Domain.Choices;
 using DungeonDelvers.Domain.Effects;
 
 namespace DungeonDelvers.Domain;
@@ -36,27 +37,35 @@ public class Race : IEffectSource
     }
 
     public static Race Create(
-        Race? parent,
+        string name,
+        string description, 
+        CreatureType creatureType = CreatureType.Humanoid,
+        uint baseSpeed = 30u,
+        int ageOfMaturity = 18,
+        int averageLifespan = 100) =>
+        new(null, name, description, creatureType, baseSpeed, ageOfMaturity, averageLifespan);
+
+    public static Race Create(
+        Race parent,
         string name, 
         string description, 
-        CreatureType creatureType = CreatureType.Humanoid, 
-        uint baseSpeed = 30u, 
-        int ageOfMaturity = 18,
-        int averageLifespan = 100)
-    {
-        return new Race(parent, name, description, creatureType, baseSpeed, ageOfMaturity, averageLifespan);
-    }
-    
+        CreatureType creatureType = CreatureType.Humanoid) =>
+        new(parent, name, description, creatureType, parent.BaseMovementSpeed, parent.AgeOfMaturity, parent.AverageLifespan);
+
     public void AddTrait(Trait trait)
     {
         _traits.Add(trait);
     }
 
-    public IEnumerable<Effect> GetEffects()
-    {
-        return Traits
+    public IEnumerable<Effect> GetEffects() =>
+        Traits
             .SelectMany(trait => trait.Effects)
             .Select(effect => effect.CloneWithEffectSource(this))
             .Concat(Parent?.GetEffects() ?? Array.Empty<Effect>());
-    }
+
+    public IEnumerable<Choice> GetChoices() =>
+        Traits
+            .SelectMany(trait => trait.Choices)
+            .Select(choice => choice.CloneWithEffectSource(this))
+            .Concat(Parent?.GetChoices() ?? Array.Empty<Choice>());
 }

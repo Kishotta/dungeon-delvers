@@ -1,12 +1,12 @@
 namespace DungeonDelvers.Domain.Effects;
 
-public class Darkvision(uint distance) : Effect
+public class LanguageProficiency(Language language) : Effect
 {
-    public uint Distance { get; private set; } = distance;
+    public Language Language { get; private set; } = language;
     
     public override MaterializedCharacter Apply(MaterializedCharacter materializedCharacter)
     {
-        materializedCharacter.Darkvision.Set(Distance);
+        materializedCharacter.LanguageProficiencies |= Language;
         return materializedCharacter;
     }
 }

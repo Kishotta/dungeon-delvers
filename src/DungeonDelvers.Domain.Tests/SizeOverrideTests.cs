@@ -8,7 +8,7 @@ public class SizeOverrideTests
     [Test]
     public void Apply_SizeOverrideApplied()
     {
-        var race = Race.Create(null, "Test Race", "Description");
+        var race = Race.Create("Test Race", "Description");
         var character = Character.Create(
             "Test character",
             race,

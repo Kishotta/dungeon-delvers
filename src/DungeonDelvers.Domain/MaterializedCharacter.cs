@@ -2,10 +2,10 @@ namespace DungeonDelvers.Domain;
 
 public class MaterializedCharacter
 {
-    public string Name { get; init; } = string.Empty;
-    public int MovementSpeed { get; set; } = 30;
-    public Size Size { get; set; } = Size.Medium;
-    public CreatureType CreatureType { get; set; } = CreatureType.Humanoid;
+    public string Name { get; init; }
+    public int MovementSpeed { get; set; }
+    public Size Size { get; set; }
+    public CreatureType CreatureType { get; set; }
     
     public AbilityScore Strength { get; set; }
     public AbilityScore Dexterity { get; set; }
@@ -14,21 +14,28 @@ public class MaterializedCharacter
     public AbilityScore Wisdom { get; set; }
     public AbilityScore Charisma { get; set; }
     
-    public SavingThrow StrengthSave { get; set; }
+    public SavingThrow StrengthSave { get; set; } = new();
     public int StrengthSaveModifier => StrengthSave.Modifier(Ability.Strength, this);
-    public SavingThrow DexteritySave { get; set; }
+    public SavingThrow DexteritySave { get; set; } = new();
     public int DexteritySaveModifier => DexteritySave.Modifier(Ability.Dexterity, this);
-    public SavingThrow ConstitutionSave { get; set; }
+    public SavingThrow ConstitutionSave { get; set; } = new();
     public int ConstitutionSaveModifier => ConstitutionSave.Modifier(Ability.Constitution, this);
-    public SavingThrow IntelligenceSave { get; set; }
+    public SavingThrow IntelligenceSave { get; set; } = new();
     public int IntelligenceSaveModifier => IntelligenceSave.Modifier(Ability.Intelligence, this);
-    public SavingThrow WisdomSave { get; set; }
+    public SavingThrow WisdomSave { get; set; } = new();
     public int WisdomSaveModifier => WisdomSave.Modifier(Ability.Wisdom, this);
-    public SavingThrow CharismaSave { get; set; }
+    public SavingThrow CharismaSave { get; set; } = new();
     public int CharismaSaveModifier => CharismaSave.Modifier(Ability.Charisma, this);
     
-    public Sense Darkvision { get; set; }
+    public Sense Darkvision { get; set; } = new(0u);
     
+    public ArmorType ArmorTypeProficiencies { get; set; } = ArmorType.None;
+    public WeaponType WeaponTypeProficiencies { get; set; } = WeaponType.None;
+    public ToolType ToolProficiencies { get; set; } = ToolType.None;
+    public Language LanguageProficiencies { get; set; } = Language.None;
+    
+    public Skill SkillProficiencies { get; set; } = Skill.None;
+
     public MaterializedCharacter(Character character)
     {
         Name = character.Name;
@@ -42,14 +49,5 @@ public class MaterializedCharacter
         Intelligence = character.Intelligence;
         Wisdom = character.Wisdom;
         Charisma = character.Charisma;
-        
-        Darkvision = new Sense(0u);
-        
-        StrengthSave = new SavingThrow();
-        DexteritySave = new SavingThrow();
-        ConstitutionSave = new SavingThrow();
-        IntelligenceSave = new SavingThrow();
-        WisdomSave = new SavingThrow();
-        CharismaSave = new SavingThrow();
     }
 }

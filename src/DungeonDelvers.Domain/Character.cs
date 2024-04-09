@@ -1,3 +1,4 @@
+using DungeonDelvers.Domain.Choices;
 using DungeonDelvers.Domain.Effects;
 
 namespace DungeonDelvers.Domain;
@@ -20,6 +21,9 @@ public class Character
     public IReadOnlyList<Effect> Effects => _effects.AsReadOnly();
     
     private readonly List<Effect> _effects = [];
+    
+    public IReadOnlyList<Choice> Choices => _choices.AsReadOnly();
+    private readonly List<Choice> _choices = [];
 
     private Character(
         string name, 
@@ -46,6 +50,7 @@ public class Character
         Charisma = charisma;
         
         _effects.AddRange(race.GetEffects());
+        _choices.AddRange(race.GetChoices());
     }
 
     public static Character Create(
@@ -75,16 +80,19 @@ public class Character
     {
         _effects.Add(effect);
     }
-
-    public MaterializedCharacter Materialize()
+    
+    public void AddChoice(Choice choice)
     {
-        var materializedCharacter = new MaterializedCharacter(this);
-        
-        foreach (var effect in _effects)
-        {
-            effect.Apply(materializedCharacter);
-        }
-
-        return materializedCharacter;
+        _choices.Add(choice);
     }
+
+    public void RemoveChoice(Choice choice)
+    {
+        _choices.Remove(choice);
+    }
+
+    public MaterializedCharacter Materialize() =>
+        _effects.Aggregate(
+            new MaterializedCharacter(this),
+            (materializedCharacter, effect) => effect.Apply(materializedCharacter));
 }
