@@ -1,13 +1,8 @@
 namespace DungeonDelvers.Domain.Effects;
 
-public class MovementSpeedAdjustment : Effect
+public class MovementSpeedAdjustment(int adjustment) : Effect
 {
-    public int Adjustment { get; private set; }
-
-    public MovementSpeedAdjustment(int adjustment)
-    {
-        Adjustment = adjustment;
-    }
+    public int Adjustment { get; private set; } = adjustment;
 
     public override void Apply(MaterializedCharacter materializedCharacter)
     {
