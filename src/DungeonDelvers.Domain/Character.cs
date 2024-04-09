@@ -78,21 +78,7 @@ public class Character
 
     public MaterializedCharacter Materialize()
     {
-        var materializedCharacter = new MaterializedCharacter
-        {
-            Name = Name,
-            MovementSpeed = (int)BaseMovementSpeed,
-            Size = Size,
-            CreatureType = CreatureType,
-            Strength = Strength,
-            Dexterity = Dexterity,
-            Constitution = Constitution,
-            Intelligence = Intelligence,
-            Wisdom = Wisdom,
-            Charisma = Charisma,
-            
-            Darkvision = new Sense(0u)
-        };
+        var materializedCharacter = new MaterializedCharacter(this);
         
         foreach (var effect in _effects)
         {

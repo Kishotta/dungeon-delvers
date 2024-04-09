@@ -8,7 +8,18 @@ public class SizeOverrideTests
     [Test]
     public void Apply_SizeOverrideApplied()
     {
-        var materializedCharacter = new MaterializedCharacter();
+        var race = Race.Create(null, "Test Race", "Description");
+        var character = Character.Create(
+            "Test character",
+            race,
+            Size.Medium,
+            new AbilityScore(10),
+            new AbilityScore(10),
+            new AbilityScore(10),
+            new AbilityScore(10),
+            new AbilityScore(10),
+            new AbilityScore(10));
+        var materializedCharacter = new MaterializedCharacter(character);
         var effect = new SizeOverride(Size.Gargantuan);
         
         effect.Apply(materializedCharacter);
