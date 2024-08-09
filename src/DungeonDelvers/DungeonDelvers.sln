@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{9963F321-1520-4A44-B3B2-6EE3EC747391}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{7DCD9863-D683-4125-9216-E6E488763DC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{DED03F2C-4C37-41E5-B16D-5FC5BFC5E649}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{6424781D-4826-4B72-A9B8-E6749C9C7BF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelvers.Common.Domain", "Common\DungeonDelvers.Common.Domain\DungeonDelvers.Common.Domain.csproj", "{D8881255-4EC4-42AB-90BD-85B71811C910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelvers.Common.Application", "Common\DungeonDelvers.Common.Application\DungeonDelvers.Common.Application.csproj", "{E234461A-20B7-4449-9E56-EDF03AA4E64B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelvers.Common.Presentation", "Common\DungeonDelvers.Common.Presentation\DungeonDelvers.Common.Presentation.csproj", "{95EEF094-7877-426E-88AD-F0281DDEB9CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelvers.Common.Infrastructure", "Common\DungeonDelvers.Common.Infrastructure\DungeonDelvers.Common.Infrastructure.csproj", "{2A4786E7-9461-4DF3-9017-2D7BBADA2B15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelvers.Api", "Api\DungeonDelvers.Api\DungeonDelvers.Api.csproj", "{6973D30F-1BCA-40CB-9F9B-9FD362A87119}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monsters", "Monsters", "{0C3015E3-BF45-4ED9-AA89-7C83AC500B43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelvers.Modules.Monsters.Domain", "Modules\Monsters\DungeonDelvers.Modules.Monsters.Domain\DungeonDelvers.Modules.Monsters.Domain.csproj", "{1F5ACD66-311F-42EE-9FA9-A7B8A5A5AA25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelvers.Modules.Monsters.Application", "Modules\Monsters\DungeonDelvers.Modules.Monsters.Application\DungeonDelvers.Modules.Monsters.Application.csproj", "{B08EF7E6-CF2D-405E-81B7-9FB4B4B8AF8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelvers.Modules.Monsters.Presentation", "Modules\Monsters\DungeonDelvers.Modules.Monsters.Presentation\DungeonDelvers.Modules.Monsters.Presentation.csproj", "{C97509D7-D8B3-459C-A66A-0670E5516885}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelvers.Modules.Monsters.Infrastructure", "Modules\Monsters\DungeonDelvers.Modules.Monsters.Infrastructure\DungeonDelvers.Modules.Monsters.Infrastructure.csproj", "{4866CCB0-F925-4E97-902E-E37E1B04B3E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D8881255-4EC4-42AB-90BD-85B71811C910} = {7DCD9863-D683-4125-9216-E6E488763DC9}
+		{E234461A-20B7-4449-9E56-EDF03AA4E64B} = {7DCD9863-D683-4125-9216-E6E488763DC9}
+		{95EEF094-7877-426E-88AD-F0281DDEB9CD} = {7DCD9863-D683-4125-9216-E6E488763DC9}
+		{2A4786E7-9461-4DF3-9017-2D7BBADA2B15} = {7DCD9863-D683-4125-9216-E6E488763DC9}
+		{6973D30F-1BCA-40CB-9F9B-9FD362A87119} = {9963F321-1520-4A44-B3B2-6EE3EC747391}
+		{0C3015E3-BF45-4ED9-AA89-7C83AC500B43} = {DED03F2C-4C37-41E5-B16D-5FC5BFC5E649}
+		{1F5ACD66-311F-42EE-9FA9-A7B8A5A5AA25} = {0C3015E3-BF45-4ED9-AA89-7C83AC500B43}
+		{B08EF7E6-CF2D-405E-81B7-9FB4B4B8AF8C} = {0C3015E3-BF45-4ED9-AA89-7C83AC500B43}
+		{C97509D7-D8B3-459C-A66A-0670E5516885} = {0C3015E3-BF45-4ED9-AA89-7C83AC500B43}
+		{4866CCB0-F925-4E97-902E-E37E1B04B3E6} = {0C3015E3-BF45-4ED9-AA89-7C83AC500B43}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8881255-4EC4-42AB-90BD-85B71811C910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8881255-4EC4-42AB-90BD-85B71811C910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8881255-4EC4-42AB-90BD-85B71811C910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8881255-4EC4-42AB-90BD-85B71811C910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E234461A-20B7-4449-9E56-EDF03AA4E64B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E234461A-20B7-4449-9E56-EDF03AA4E64B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E234461A-20B7-4449-9E56-EDF03AA4E64B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E234461A-20B7-4449-9E56-EDF03AA4E64B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95EEF094-7877-426E-88AD-F0281DDEB9CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95EEF094-7877-426E-88AD-F0281DDEB9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95EEF094-7877-426E-88AD-F0281DDEB9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95EEF094-7877-426E-88AD-F0281DDEB9CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A4786E7-9461-4DF3-9017-2D7BBADA2B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A4786E7-9461-4DF3-9017-2D7BBADA2B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A4786E7-9461-4DF3-9017-2D7BBADA2B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A4786E7-9461-4DF3-9017-2D7BBADA2B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6973D30F-1BCA-40CB-9F9B-9FD362A87119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6973D30F-1BCA-40CB-9F9B-9FD362A87119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6973D30F-1BCA-40CB-9F9B-9FD362A87119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6973D30F-1BCA-40CB-9F9B-9FD362A87119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F5ACD66-311F-42EE-9FA9-A7B8A5A5AA25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F5ACD66-311F-42EE-9FA9-A7B8A5A5AA25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F5ACD66-311F-42EE-9FA9-A7B8A5A5AA25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F5ACD66-311F-42EE-9FA9-A7B8A5A5AA25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B08EF7E6-CF2D-405E-81B7-9FB4B4B8AF8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B08EF7E6-CF2D-405E-81B7-9FB4B4B8AF8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B08EF7E6-CF2D-405E-81B7-9FB4B4B8AF8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B08EF7E6-CF2D-405E-81B7-9FB4B4B8AF8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C97509D7-D8B3-459C-A66A-0670E5516885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97509D7-D8B3-459C-A66A-0670E5516885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97509D7-D8B3-459C-A66A-0670E5516885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97509D7-D8B3-459C-A66A-0670E5516885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4866CCB0-F925-4E97-902E-E37E1B04B3E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4866CCB0-F925-4E97-902E-E37E1B04B3E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4866CCB0-F925-4E97-902E-E37E1B04B3E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4866CCB0-F925-4E97-902E-E37E1B04B3E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

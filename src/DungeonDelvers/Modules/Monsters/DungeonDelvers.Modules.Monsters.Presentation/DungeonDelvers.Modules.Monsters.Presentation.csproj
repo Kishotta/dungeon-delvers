@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\DungeonDelvers.Common.Presentation\DungeonDelvers.Common.Presentation.csproj" />
+    <ProjectReference Include="..\DungeonDelvers.Modules.Monsters.Application\DungeonDelvers.Modules.Monsters.Application.csproj" />
+  </ItemGroup>
+</Project>

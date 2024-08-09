@@ -1,0 +1,6 @@
+@DungeonDelvers.Api_HostAddress = http://localhost:5043
+
+GET {{DungeonDelvers.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

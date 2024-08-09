@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\DungeonDelvers.Common.Infrastructure\DungeonDelvers.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\DungeonDelvers.Modules.Monsters.Application\DungeonDelvers.Modules.Monsters.Application.csproj" />
+    <ProjectReference Include="..\DungeonDelvers.Modules.Monsters.Domain\DungeonDelvers.Modules.Monsters.Domain.csproj" />
+    <ProjectReference Include="..\DungeonDelvers.Modules.Monsters.Presentation\DungeonDelvers.Modules.Monsters.Presentation.csproj" />
+  </ItemGroup>
+</Project>
