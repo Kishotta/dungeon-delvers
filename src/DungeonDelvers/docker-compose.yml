@@ -1,62 +1,61 @@
-services: 
-  dungeon-delvers.api:
-    image: ${DOCKER_REGISTRY-}dungeondelversapi
-    container_name: DungeonDelvers.Api
-    build:
-      context: .
-      dockerfile: ./Api/DungeonDelvers.Api/Dockerfile
-    ports:
-      - "5000:8080"
-      - "5001:8081"
-    depends_on:
-      dungeon-delvers.database:
-        condition: service_healthy
-      dungeon-delvers.redis:
-        condition: service_healthy
-        
-  dungeon-delvers.database:
-    image: postgres:latest
-    container_name: DungeonDelvers.Database
-    environment:
-      - POSTGRES_DB=dungeondelvers
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    healthcheck:
-      test: pg_isready -U postgres
-      interval: 5s
-      timeout: 3s
-      retries: 3
-    ports:
-        - "5432:5432"
-    volumes:
-      - ./.containers/db:/var/lib/postgresql/data
-  
-  dungeon-delvers.redis:
-    image: redis:latest
-    container_name: DungeonDelvers.Redis
-    restart: always
-    healthcheck:
-      test: redis-cli --raw incr ping
-    ports:
-      - "6379:6379"
-  
-  dungeon-delvers.identity:
-    image: quay.io/keycloak/keycloak:latest
-    container_name: DungeonDelvers.Identity
-    command: start-dev --import-realm
-    environment:
-      - KC_HEALTH_ENABLED=true
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin
-    volumes:
-      - ./.containers/keycloak:/opt/jboss/keycloak/standalone/data
-  
-  dungeon-delvers.seq:
-    image: datalust/seq
-    container_name: DungeonDelvers.Seq
-    environment:
-      - ACCEPT_EULA=Y
-    ports:
-      - "5341:5341"
-      - "8081:80"
-    
+services:
+    dungeon-delvers.api:
+        image: ${DOCKER_REGISTRY-}dungeondelversapi
+        container_name: DungeonDelvers.Api
+        build:
+            context: .
+            dockerfile: ./Api/DungeonDelvers.Api/Dockerfile
+        ports:
+            - "5000:8080"
+            - "5001:8081"
+        depends_on:
+            dungeon-delvers.database:
+                condition: service_healthy
+            dungeon-delvers.redis:
+                condition: service_healthy
+
+    dungeon-delvers.database:
+        image: postgres:latest
+        container_name: DungeonDelvers.Database
+        environment:
+            - POSTGRES_DB=dungeon-delvers
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        healthcheck:
+            test: pg_isready -U postgres
+            interval: 5s
+            timeout: 3s
+            retries: 3
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./.containers/db:/var/lib/postgresql/data
+
+    dungeon-delvers.redis:
+        image: redis:latest
+        container_name: DungeonDelvers.Redis
+        restart: always
+        healthcheck:
+            test: redis-cli --raw incr ping
+        ports:
+            - "6379:6379"
+
+    dungeon-delvers.identity:
+        image: quay.io/keycloak/keycloak:latest
+        container_name: DungeonDelvers.Identity
+        command: start-dev --import-realm
+        environment:
+            - KC_HEALTH_ENABLED=true
+            - KEYCLOAK_ADMIN=admin
+            - KEYCLOAK_ADMIN_PASSWORD=admin
+        volumes:
+            - ./.containers/keycloak:/opt/jboss/keycloak/standalone/data
+
+    dungeon-delvers.seq:
+        image: datalust/seq
+        container_name: DungeonDelvers.Seq
+        environment:
+            - ACCEPT_EULA=Y
+        ports:
+            - "5341:5341"
+            - "8081:80"
