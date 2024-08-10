@@ -1,3 +1,4 @@
+using DungeonDelvers.Modules.Monsters.Domain.DiceExpressions;
 using DungeonDelvers.Modules.Monsters.Domain.Monsters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,5 +14,7 @@ internal sealed class MonsterConfiguration : IEntityTypeConfiguration<Monster>
         builder.Property(monster => monster.Name)
             .IsRequired()
             .HasMaxLength(100);
+
+        builder.OwnsOne<DiceExpression>(monster => monster.HitPoints);
     }
 }

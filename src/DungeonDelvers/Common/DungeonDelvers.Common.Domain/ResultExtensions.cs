@@ -9,6 +9,20 @@ public static class ResultExtensions
             onSuccess,
             _ => Result.Failure<TOut>(result.Error));
     
+    public static Result<TOut> Bind<TOut>(
+        this Result<TOut> result,
+        Func<TOut, Result<TOut>> onSuccess) =>
+        result.Match(
+            onSuccess,
+            _ => result);
+
+    public static Result<TOut> Bind<TIn, TOut>(
+        this Result<TIn> result,
+        Func<TIn, Result<TOut>> onSuccess) =>
+        result.Match<TIn, Result<TOut>>(
+            onSuccess,
+            _ => Result.Failure<TOut>(result.Error));
+    
     public static Result<TValue> Tap<TValue>(
         this Result<TValue> result,
         Action<TValue> action) =>

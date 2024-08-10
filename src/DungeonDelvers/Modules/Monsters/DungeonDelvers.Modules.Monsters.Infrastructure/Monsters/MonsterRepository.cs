@@ -6,6 +6,13 @@ namespace DungeonDelvers.Modules.Monsters.Infrastructure.Monsters;
 
 internal sealed class MonsterRepository(MonstersDbContext dbContext) : IMonsterRepository
 {
+    public async Task<IEnumerable<Monster>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        return await dbContext
+            .Monsters
+            .ToListAsync(cancellationToken); 
+    }
+
     public async Task<Monster?> GetAsync(Guid monsterId, CancellationToken cancellationToken = default) =>
         await dbContext
             .Monsters

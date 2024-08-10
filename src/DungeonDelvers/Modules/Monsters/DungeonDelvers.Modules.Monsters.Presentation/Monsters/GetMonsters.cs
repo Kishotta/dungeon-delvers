@@ -2,6 +2,7 @@ using DungeonDelvers.Common.Domain;
 using DungeonDelvers.Common.Presentation.ApiResults;
 using DungeonDelvers.Common.Presentation.Endpoints;
 using DungeonDelvers.Modules.Monsters.Application.Monsters.CreateMonster;
+using DungeonDelvers.Modules.Monsters.Application.Monsters.GetMonsters;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -9,17 +10,15 @@ using Microsoft.AspNetCore.Routing;
 
 namespace DungeonDelvers.Modules.Monsters.Presentation.Monsters;
 
-internal sealed class CreateMonster : IEndpoint
+internal sealed class GetMonsters : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("/monsters", async (Request request, ISender sender) =>
+        app.MapGet("/monsters", async (ISender sender) =>
             {
-                var result = await sender.Send(new CreateMonsterCommand(request.Name, request.HitPoints));
-                return result.Match(Results.Ok, ApiResults.Problem);
-            }).WithName(nameof(CreateMonster))
+                var result = await sender.Send(new GetMonstersQuery());
+                return result.Match(Results.Ok<IEnumerable<MonsterResponse>>, ApiResults.Problem);
+            }).WithName(nameof(GetMonsters))
             .WithTags(Tags.Monsters);
     }
-
-    internal sealed record Request(string Name, string HitPoints);
 }

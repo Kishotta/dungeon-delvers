@@ -6,6 +6,7 @@ internal sealed class CreateMonsterCommandValidator : AbstractValidator<CreateMo
 {
     public CreateMonsterCommandValidator()
     {
-        RuleFor(command => command.Name).MaximumLength(100);
+        RuleFor(command => command.Name).NotEmpty().MaximumLength(100);
+        RuleFor(command => command.HitPoints).NotEmpty().MaximumLength(20);
     }
 }
