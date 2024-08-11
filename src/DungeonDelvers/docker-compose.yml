@@ -17,10 +17,13 @@ services:
     dungeon-delvers.database:
         image: postgres:latest
         container_name: DungeonDelvers.Database
+        build:
+            context: ./.postgres
+            dockerfile: Dockerfile
         environment:
-            - POSTGRES_DB=dungeon-delvers
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=postgres
+            POSTGRES_DB: dungeon-delvers
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
         healthcheck:
             test: pg_isready -U postgres
             interval: 5s

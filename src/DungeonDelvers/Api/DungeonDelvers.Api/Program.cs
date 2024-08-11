@@ -14,6 +14,7 @@ builder.AddLogging();
 
 builder.Services
     .AddExceptionHandling()
+    .AddCorsPolicy(builder.Configuration)
     .AddOpenApi()
     .AddModules(
         builder.Configuration,
@@ -26,12 +27,10 @@ builder.Services
 
 var app = builder.Build();
 
-
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.ApplyMigrations();
-
 
 app.MapEndpoints();
 
@@ -43,6 +42,8 @@ app.MapHealthChecks("healthz", new HealthCheckOptions
 app.UseSerilogRequestLogging();
 
 app.UseExceptionHandler();
+
+app.UseCors();
 
 app.UseAuthentication();
 
