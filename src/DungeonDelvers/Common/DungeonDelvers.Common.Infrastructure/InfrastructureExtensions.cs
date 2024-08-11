@@ -1,4 +1,5 @@
 using System.Reflection;
+using Dapper;
 using DungeonDelvers.Common.Application.Caching;
 using DungeonDelvers.Common.Application.Clock;
 using DungeonDelvers.Common.Application.Data;
@@ -129,6 +130,14 @@ public static class InfrastructureExtensions
         where TConfigureProcessOutboxJob : class, IConfigureOptions<QuartzOptions> =>
         services.Configure<TOutboxOptions>(section)
             .ConfigureOptions<TConfigureProcessOutboxJob>();
+
+    public static async Task InstallPostgresExtensionAsync(this IServiceScope scope, string extension)
+    {
+        await using var dbConnection = await scope.ServiceProvider.GetRequiredService<IDbConnectionFactory>().OpenConnectionAsync();
+        var sql = $"CREATE EXTENSION IF NOT EXISTS {extension};";
+
+        await dbConnection.ExecuteAsync(sql);
+    }
     
     public static void ApplyMigrations<TDbContext>(this IServiceScope scope)
         where TDbContext : DbContext

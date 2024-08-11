@@ -16,7 +16,7 @@ public interface IModule
     void Configure(IConfigurationBuilder configurationBuilder);
     void ConfigureConsumers(IRegistrationConfigurator registrationConfigurator);
     void Add(IServiceCollection services, IConfiguration configuration, string databaseConnectionString);
-    void ApplyMigrations(IServiceScope scope);
+    Task ApplyMigrationsAsync(IServiceScope scope);
 }
 
 public abstract class Module<
@@ -99,8 +99,9 @@ public abstract class Module<
             });
     }
 
-    public void ApplyMigrations(IServiceScope scope)
+    public async Task ApplyMigrationsAsync(IServiceScope scope)
     {
+        await scope.InstallPostgresExtensionAsync("pg_trgm");
         scope.ApplyMigrations<TDbContext>();
     }
 }

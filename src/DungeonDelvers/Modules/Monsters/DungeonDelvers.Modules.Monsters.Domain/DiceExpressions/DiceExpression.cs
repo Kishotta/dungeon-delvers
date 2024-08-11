@@ -3,7 +3,7 @@ using DungeonDelvers.Common.Domain;
 
 namespace DungeonDelvers.Modules.Monsters.Domain.DiceExpressions;
 
-public partial class DiceExpression
+public partial record DiceExpression
 {
     public string Expression { get; private init; } = string.Empty;
     public int DiceCount { get; private init; }

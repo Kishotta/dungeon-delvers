@@ -15,7 +15,7 @@ public static class ResultExtensions
         result.Match(
             onSuccess,
             _ => result);
-
+    
     public static Result<TOut> Bind<TIn, TOut>(
         this Result<TIn> result,
         Func<TIn, Result<TOut>> onSuccess) =>
@@ -39,7 +39,7 @@ public static class ResultExtensions
         Func<TOut> onSuccess,
         Func<Result, TOut> onFailure) =>
         result.IsSuccess ? onSuccess() : onFailure(result);
-
+    
     public static TOut Match<TIn, TOut>(
         this Result<TIn> result,
         Func<TIn, TOut> onSuccess,

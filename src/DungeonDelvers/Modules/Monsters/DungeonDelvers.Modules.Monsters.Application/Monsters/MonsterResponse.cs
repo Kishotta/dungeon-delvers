@@ -1,6 +1,6 @@
 using DungeonDelvers.Modules.Monsters.Domain.Monsters;
 
-namespace DungeonDelvers.Modules.Monsters.Application.Monsters.CreateMonster;
+namespace DungeonDelvers.Modules.Monsters.Application.Monsters;
 
 public sealed record MonsterResponse(
     Guid Id,

@@ -9,24 +9,23 @@ using Microsoft.AspNetCore.Routing;
 
 namespace DungeonDelvers.Modules.Monsters.Presentation.Monsters;
 
-internal sealed class CreateMonster : IEndpoint
+internal sealed class CreateOfficialMonster : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("/monsters", async (Request request, ISender sender) =>
+        app.MapPost("/monsters/official", async (Request request, ISender sender) =>
             {
                 var result = await sender.Send(new CreateMonsterCommand(
-                    request.Official,
+                    true,
                     request.Name,
                     request.HitPoints,
                     request.ChallengeRating));
                 return result.Match(Results.Ok, ApiResults.Problem);
-            }).WithName(nameof(CreateMonster))
+            }).WithName(nameof(CreateOfficialMonster))
             .WithTags(Tags.Monsters);
     }
 
     internal sealed record Request(
-        bool Official,
         string Name,
         string HitPoints,
         float ChallengeRating);

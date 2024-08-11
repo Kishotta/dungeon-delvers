@@ -3,6 +3,7 @@ using System;
 using DungeonDelvers.Modules.Monsters.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DungeonDelvers.Modules.Monsters.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(MonstersDbContext))]
-    partial class MonstersDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240811165057_AddMonsterChallengeRating")]
+    partial class AddMonsterChallengeRating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,10 +193,6 @@ namespace DungeonDelvers.Modules.Monsters.Infrastructure.Database.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("name");
-
-                    b.Property<bool>("Official")
-                        .HasColumnType("boolean")
-                        .HasColumnName("official");
 
                     b.HasKey("Id")
                         .HasName("pk_monsters");

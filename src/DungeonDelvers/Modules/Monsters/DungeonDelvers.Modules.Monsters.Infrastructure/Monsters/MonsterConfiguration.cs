@@ -1,3 +1,4 @@
+using DungeonDelvers.Modules.Monsters.Domain.ChallengeRatings;
 using DungeonDelvers.Modules.Monsters.Domain.DiceExpressions;
 using DungeonDelvers.Modules.Monsters.Domain.Monsters;
 using Microsoft.EntityFrameworkCore;
@@ -16,5 +17,14 @@ internal sealed class MonsterConfiguration : IEntityTypeConfiguration<Monster>
             .HasMaxLength(100);
 
         builder.OwnsOne<DiceExpression>(monster => monster.HitPoints);
+        
+        builder.OwnsOne<ChallengeRating>(
+            monster => monster.ChallengeRating,
+            challengeRating =>
+            {
+                challengeRating.Property(cr => cr.Value)
+                    .HasColumnName("challenge_rating")
+                    .IsRequired();
+            });
     }
 }

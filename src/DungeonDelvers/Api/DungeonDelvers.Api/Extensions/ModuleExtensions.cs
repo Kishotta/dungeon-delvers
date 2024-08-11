@@ -28,14 +28,14 @@ public static class ModuleExtensions
         return services;
     }
     
-    internal static void ApplyMigrations(this IApplicationBuilder app)
+    internal static async Task ApplyMigrationsAsync(this IApplicationBuilder app)
     {
         using var scope = app.ApplicationServices.CreateScope();
         
         var modules = GetModules();
         foreach (var module in modules)
         {
-            module.ApplyMigrations(scope);
+            await module.ApplyMigrationsAsync(scope);
         }
     }
     
