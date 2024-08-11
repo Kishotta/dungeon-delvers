@@ -6,15 +6,12 @@ namespace DungeonDelvers.Modules.Monsters.Domain.DiceExpressions;
 public partial class DiceExpression
 {
     public string Expression { get; private init; } = string.Empty;
-    
-    // TODO: Store these computed properties in the database
-    public int DiceCount => int.Parse(DiceExpressionRegex().Match(Expression).Groups["count"].Value);
-    public int DiceType => int.Parse(DiceExpressionRegex().Match(Expression).Groups["sides"].Value);
-    public int Modifier => DiceExpressionRegex().Match(Expression).Groups["modifier"].Success ?
-            int.Parse(DiceExpressionRegex().Match(Expression).Groups["modifier"].Value) : 0;
-    public int Minimum => DiceCount + Modifier;
-    public int Maximum => DiceCount * DiceType + Modifier;
-    public int Average => (DiceCount + DiceCount * DiceType) / 2 + Modifier;
+    public int DiceCount { get; private init; }
+    public int DiceType { get; private init; }
+    public int Modifier { get; private init; }
+    public int Minimum { get; private init; }
+    public int Maximum { get; private init; }
+    public int Average { get; private init; }
 
     [GeneratedRegex(@"\s+")]
     private static partial Regex Whitespace();
@@ -26,17 +23,40 @@ public partial class DiceExpression
 
     public static Result<DiceExpression> Create(string expression) =>
         TrimExpression(expression)
-            .Bind<string>(ValidateExpression)
-            .Bind<string, DiceExpression>((trimmedExpression) => new DiceExpression
+            .Bind<string, DiceExpression>(trimmedExpression =>
             {
-                Expression = trimmedExpression
+                if (!ParseExpression(trimmedExpression, out var diceCount, out var diceType, out var modifier))
+                    return Result.Failure<DiceExpression>(DiceExpressionErrors.InvalidExpression);
+                
+                return new DiceExpression
+                {
+                    Expression = trimmedExpression,
+                    DiceCount = diceCount,
+                    DiceType = diceType,
+                    Modifier = modifier,
+                    Minimum = diceCount + modifier,
+                    Maximum = diceCount * diceType + modifier,
+                    Average = (diceCount + diceCount * diceType) / 2 + modifier
+                };
             });
-
+    
     private static Result<string> TrimExpression(string expression) => 
         Whitespace().Replace(expression, string.Empty);
-
-    private static Result<string> ValidateExpression(string expression) =>
-        !DiceExpressionRegex().IsMatch(expression) ?
-            Result.Failure<string>(DiceExpressionErrors.InvalidExpression) : 
-            Result.Success(expression);
+    
+    private static bool ParseExpression(string trimmedExpression, out int diceCount, out int diceType, out int modifier)
+    {
+        var match = DiceExpressionRegex().Match(trimmedExpression);
+        if (!match.Success)
+        {
+            diceCount = 0;
+            diceType = 0;
+            modifier = 0;
+            return false;
+        }
+        
+        diceCount = int.Parse(match.Groups["count"].Value);
+        diceType = int.Parse(match.Groups["sides"].Value);
+        modifier = match.Groups["modifier"].Success ? int.Parse(match.Groups["modifier"].Value) : 0;
+        return true;
+    }
 }

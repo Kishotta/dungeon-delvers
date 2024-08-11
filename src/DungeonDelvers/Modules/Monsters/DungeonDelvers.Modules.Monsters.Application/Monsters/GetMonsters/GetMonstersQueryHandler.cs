@@ -1,20 +1,31 @@
+using Dapper;
+using DungeonDelvers.Common.Application.Data;
 using DungeonDelvers.Common.Application.Messaging;
 using DungeonDelvers.Common.Domain;
 using DungeonDelvers.Modules.Monsters.Application.Monsters.CreateMonster;
-using DungeonDelvers.Modules.Monsters.Domain.Monsters;
 
 namespace DungeonDelvers.Modules.Monsters.Application.Monsters.GetMonsters;
 
 internal sealed class GetMonstersQueryHandler(
-    IMonsterRepository monsterRepository)
+    IDbConnectionFactory dbConnectionFactory)
     : IQueryHandler<GetMonstersQuery, IEnumerable<MonsterResponse>>
 {
     public async Task<Result<IEnumerable<MonsterResponse>>> Handle(GetMonstersQuery request, CancellationToken cancellationToken)
     {
-        var monsters = await monsterRepository.GetAllAsync(cancellationToken);
-            
-        var monsterResponses = monsters.Select(monster => (MonsterResponse)monster);
+        await using var dbConnection = await dbConnectionFactory.OpenConnectionAsync();
 
-        return Result.Success(monsterResponses);
+        const string sql =
+            $"""
+            SELECT
+                id AS {nameof(MonsterResponse.Id)},
+                name AS {nameof(MonsterResponse.Name)},
+                hit_points_expression AS {nameof(MonsterResponse.HitPoints)},
+                hit_points_average AS {nameof(MonsterResponse.HitPointsAverage)}
+            FROM monsters.monsters
+            """;
+
+        var monsters = await dbConnection.QueryAsync<MonsterResponse>(sql);
+
+        return Result.Success(monsters);
     }
 }
