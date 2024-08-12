@@ -24,6 +24,10 @@ internal sealed class CreateMonsterCommandHandler(
         var monster = Monster.Create(
             request.Official,
             request.Name, 
+            request.Size,
+            request.Type,
+            request.Alignment,
+            request.ArmorClass,
             hitPoints.Value, 
             challengeRating.Value);
         

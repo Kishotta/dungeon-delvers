@@ -2,6 +2,7 @@ using DungeonDelvers.Common.Domain;
 using DungeonDelvers.Common.Presentation.ApiResults;
 using DungeonDelvers.Common.Presentation.Endpoints;
 using DungeonDelvers.Modules.Monsters.Application.Monsters.CreateMonster;
+using DungeonDelvers.Modules.Monsters.Domain.Monsters;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +19,10 @@ internal sealed class CreateMonster : IEndpoint
                 var result = await sender.Send(new CreateMonsterCommand(
                     request.Official,
                     request.Name,
+                    request.Size,
+                    request.Type,
+                    request.Alignment,
+                    request.ArmorClass,
                     request.HitPoints,
                     request.ChallengeRating));
                 return result.Match(Results.Ok, ApiResults.Problem);
@@ -28,6 +33,10 @@ internal sealed class CreateMonster : IEndpoint
     internal sealed record Request(
         bool Official,
         string Name,
+        Size Size,
+        MonsterType Type,
+        Alignment Alignment,
+        int ArmorClass,
         string HitPoints,
         float ChallengeRating);
 }

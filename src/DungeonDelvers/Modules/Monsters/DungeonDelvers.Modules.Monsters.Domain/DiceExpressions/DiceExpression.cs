@@ -59,4 +59,15 @@ public partial record DiceExpression
         modifier = match.Groups["modifier"].Success ? int.Parse(match.Groups["modifier"].Value) : 0;
         return true;
     }
+    
+    public void Deconstruct(
+        out string expression,
+        out int diceCount, 
+        out int diceType, 
+        out int modifier,
+        out int minimum,
+        out int maximum,
+        out int average) =>
+        (expression, diceCount, diceType, modifier, minimum, maximum, average) =
+        (Expression, DiceCount, DiceType, Modifier, Minimum, Maximum, Average);
 }

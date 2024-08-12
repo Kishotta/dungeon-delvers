@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text.Json.Serialization;
 using DungeonDelvers.Common.Presentation.Endpoints;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
@@ -9,6 +10,16 @@ namespace DungeonDelvers.Common.Presentation;
 
 public static class PresentationExtensions
 {
+    public static IServiceCollection AddCommonPresentation(this IServiceCollection services) =>
+        services.ConfigureHttpJsonOptions(options =>
+            {
+                options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            })
+            .Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
+
     public static IServiceCollection AddEndpoints(
         this IServiceCollection services, 
         Assembly presentationAssembly)

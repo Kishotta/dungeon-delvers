@@ -26,6 +26,26 @@ public class Monster : Entity
     /// The name of the Monster.
     /// </summary>
     public string Name { get; private set; } = string.Empty;
+
+    /// <summary>
+    /// The size of the Monster, which determines its space and reach in combat.
+    /// </summary>
+    public Size Size { get; private set; } = Size.Medium;
+
+    /// <summary>
+    /// The type of the Monster, which represents its general nature and abilities.
+    /// </summary>
+    public MonsterType Type { get; private set; } = default!;
+    
+    /// <summary>
+    /// The alignment of the Monster, which represents its moral and ethical outlook.
+    /// </summary>
+    public Alignment Alignment { get; private set; }
+    
+    /// <summary>
+    /// The Armor Class of the Monster, which represents how difficult it is to hit in combat.
+    /// </summary>
+    public int ArmorClass { get; private set; }
     
     /// <summary>
     /// The hit points of the Monster, represented as a DiceExpression.
@@ -42,14 +62,13 @@ public class Monster : Entity
     /// <summary>
     /// Creates a new Monster with the specified attributes.
     /// </summary>
-    /// <param name="official">Whether the Monster is an official creature from a published source book.</param>
-    /// <param name="name">The name of the Monster</param>
-    /// <param name="hitPoints">The hit points of the Monster, represented as a DiceExpression</param>
-    /// <param name="challengeRating">The Challenge Rating of the Monster</param>
-    /// <returns></returns>
     public static Monster Create(
         bool official,
         string name,
+        Size size,
+        MonsterType type,
+        Alignment alignment,
+        int armorClass,
         DiceExpression hitPoints,
         ChallengeRating challengeRating)
     {
@@ -58,6 +77,10 @@ public class Monster : Entity
             Id = Guid.NewGuid(),
             Official = official,
             Name = name,
+            Size = size,
+            Type = type,
+            Alignment = alignment,
+            ArmorClass = armorClass,
             HitPoints = hitPoints,
             ChallengeRating = challengeRating
         };
@@ -114,4 +137,25 @@ public class Monster : Entity
         
         RaiseDomainEvent(new MonsterChallengeRatingChangedDomainEvent(Id, challengeRating));
     }
+}
+
+[Flags]
+public enum Alignment
+{
+    None = 0,
+    Lawful = 1,
+    Chaotic = 1 << 1,
+    Good = 1 << 2,
+    Evil = 1 << 3,
+    Neutral = 1 << 4,
+    LawfulGood = Lawful | Good,
+    NeutralGood = Neutral | Good,
+    ChaoticGood = Chaotic | Good,
+    LawfulNeutral = Lawful | Neutral,
+    TrueNeutral = Neutral,
+    ChaoticNeutral = Chaotic | Neutral,
+    LawfulEvil = Lawful | Evil,
+    NeutralEvil = Neutral | Evil,
+    ChaoticEvil = Chaotic | Evil,
+    Any = Lawful | Chaotic | Good | Evil | Neutral
 }

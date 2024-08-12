@@ -1,5 +1,6 @@
 using DungeonDelvers.Common.Application;
 using DungeonDelvers.Common.Infrastructure;
+using DungeonDelvers.Common.Presentation;
 using DungeonDelvers.Modules.Monsters.Infrastructure;
 
 namespace DungeonDelvers.Api.Extensions;
@@ -15,6 +16,7 @@ public static class ModuleExtensions
         var modules = GetModules().ToList();
         
         services.AddApplicationUseCasePipeline()
+            .AddCommonPresentation()
             .AddCommonInfrastructure(databaseConnectionString, cacheConnectionString, modules);
         
         foreach (var module in modules)

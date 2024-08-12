@@ -24,4 +24,6 @@ public record ChallengeRating
             ? new ChallengeRating { Value = value }
             : Result.Failure<ChallengeRating>(ChallengeRatingErrors.InvalidValue(value));
     }
+
+    public static implicit operator float(ChallengeRating challengeRating) => challengeRating.Value;
 }
