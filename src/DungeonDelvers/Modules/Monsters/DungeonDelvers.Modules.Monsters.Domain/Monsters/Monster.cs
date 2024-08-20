@@ -36,11 +36,11 @@ public class Monster : Entity
     /// The type of the Monster, which represents its general nature and abilities.
     /// </summary>
     public MonsterType Type { get; private set; } = default!;
-    
+
     /// <summary>
     /// The alignment of the Monster, which represents its moral and ethical outlook.
     /// </summary>
-    public Alignment Alignment { get; private set; }
+    public Alignment Alignment { get; private set; } = default!;
     
     /// <summary>
     /// The Armor Class of the Monster, which represents how difficult it is to hit in combat.
@@ -139,23 +139,23 @@ public class Monster : Entity
     }
 }
 
-[Flags]
-public enum Alignment
-{
-    None = 0,
-    Lawful = 1,
-    Chaotic = 1 << 1,
-    Good = 1 << 2,
-    Evil = 1 << 3,
-    Neutral = 1 << 4,
-    LawfulGood = Lawful | Good,
-    NeutralGood = Neutral | Good,
-    ChaoticGood = Chaotic | Good,
-    LawfulNeutral = Lawful | Neutral,
-    TrueNeutral = Neutral,
-    ChaoticNeutral = Chaotic | Neutral,
-    LawfulEvil = Lawful | Evil,
-    NeutralEvil = Neutral | Evil,
-    ChaoticEvil = Chaotic | Evil,
-    Any = Lawful | Chaotic | Good | Evil | Neutral
-}
+// [Flags]
+// public enum Alignment
+// 
+//     None = 0,
+//     Lawful = 1,
+//     Chaotic = 1 << 1,
+//     Good = 1 << 2,
+//     Evil = 1 << 3,
+//     Neutral = 1 << 4,
+//     LawfulGood = Lawful | Good,
+//     NeutralGood = Neutral | Good,
+//     ChaoticGood = Chaotic | Good,
+//     LawfulNeutral = Lawful | Neutral,
+//     TrueNeutral = Neutral,
+//     ChaoticNeutral = Chaotic | Neutral,
+//     LawfulEvil = Lawful | Evil,
+//     NeutralEvil = Neutral | Evil,
+//     ChaoticEvil = Chaotic | Evil,
+//     Any = Lawful | Chaotic | Good | Evil | Neutral
+// 

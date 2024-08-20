@@ -1,0 +1,10 @@
+<div [ngClass]="cardHeadingClasses">
+  <div class="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
+    <div class="ml-4 mt-2">
+      <ng-content select="[heading]" />
+      <ng-content select="[sub-heading]"/>
+    </div>
+    <div #actionsContainer class="ml-4 mt-4 flex gap-3 flex-shrink-0"></div>
+  </div>
+</div>
+
