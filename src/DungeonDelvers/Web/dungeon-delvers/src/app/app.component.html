@@ -1,32 +1,45 @@
-<container fullWidthOnMobile constrained class="max-w-2xl">
+<container fullWidthOnMobile constrained class="max-w-5xl mt-6">
   <card edgeToEdgeOnMobile>
     <card-heading>
+<!--      <h3 heading class="text-base font-semibold leading-6 text-gray-900">Deva</h3>-->
+<!--      <p sub-heading class="text-sm text-gray-500">-->
+<!--        Medium Celestial, Lawful Good-->
+<!--      </p>-->
+
       <div heading class="flex items-center">
         <div class="flex-shrink-0">
-          <img class="h-12 w-12 rounded-full object-cover" src="https://static.wikia.nocookie.net/forgottenrealms/images/e/e8/Lumalia_-_Dead_in_Thay.jpg" alt="deva portrait">
+          <img class="h-12 w-12 rounded-full object-cover" src="https://static.wikia.nocookie.net/forgottenrealms/images/e/e8/Lumalia_-_Dead_in_Thay.jpg/asdf" alt="deva portrait">
         </div>
         <div class="ml-4">
-          <h3 class="text-base font-semibold leading-6 text-gray-900">Deva</h3>
+          <div class="flex items-baseline gap-2">
+            <h3 class="text-base font-semibold leading-6 text-gray-900">Ashen Flying Sword</h3>
+            <span class="inline-flex items-center rounded-full bg-purple-50 px-2 py-1 text-xs font-medium text-purple-800 ring-1 ring-inset ring-purple-600/20">Weapon</span>
+
+          </div>
           <p class="text-sm text-gray-500">
-            Medium Celestial, Lawful Good
+            <span>Small Elemental, Lawful Evil</span>
           </p>
         </div>
       </div>
 
-      <button #action type="button" class="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+      <action secondary circular [size]="'large'" #action>
 
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400">
-          <path d="M5.625 3.75a2.625 2.625 0 1 0 0 5.25h12.75a2.625 2.625 0 0 0 0-5.25H5.625ZM3.75 11.25a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75ZM3 15.75a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75ZM3.75 18.75a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75Z" />
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
         </svg>
 
-        <span>Add to Encounter</span>
-      </button>
+<!--        <span>Add to Encounter</span>-->
+      </action>
     </card-heading>
     <card-body>
-      Card Body
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+        <ability-score stat="STR" [score]="12" />
+        <ability-score stat="DEX" [score]="15" />
+        <ability-score stat="CON" [score]="11" />
+        <ability-score stat="INT" [score]="9"  />
+        <ability-score stat="WIS" [score]="5"  />
+        <ability-score stat="CHA" [score]="1"  />
+      </div>
     </card-body>
-    <card-footer>
-      Card Footer
-    </card-footer>
   </card>
 </container>

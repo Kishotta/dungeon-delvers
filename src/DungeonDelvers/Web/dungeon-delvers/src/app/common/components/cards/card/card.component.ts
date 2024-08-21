@@ -63,8 +63,8 @@ export class CardComponent {
     return {
       [this.elementRef.nativeElement.getAttribute('class') ?? '']: true,
       'overflow-hidden': !this._allowOverflow,
-      'rounded-lg': !this._edgeToEdgeOnMobile,
-      'sm:rounded-lg': this._edgeToEdgeOnMobile,
+      'rounded-3xl': !this._edgeToEdgeOnMobile,
+      'sm:rounded-3xl': this._edgeToEdgeOnMobile,
       'divide-y divide-solid divide-gray-200': this._divided,
       'bg-white shadow': !this._well && !this._wellOnGray,
       'bg-gray-50': this._well,
